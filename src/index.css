@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #fff4e8;
+  --bg-soft: #fffaf4;
+  --ink: #102117;
+  --muted: #5b6c63;
+  --line: #eadfce;
+  --card: #ffffff;
+  --citrus: #ff4d1c;
+  --mango: #ffb000;
+  --leaf: #178a3a;
+  --berry: #e23e73;
+  --foam: #10281c;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #07110c;
+  --bg-soft: #0c1812;
+  --ink: #f6f0e7;
+  --muted: #a9b7ae;
+  --line: #24362c;
+  --card: #122019;
+  --citrus: #ff6a3d;
+  --mango: #ffc44d;
+  --leaf: #8ed56a;
+  --berry: #ff7aa2;
+  --foam: #06110c;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-citrus: var(--citrus);
+  --color-mango: var(--mango);
+  --color-leaf: var(--leaf);
+  --color-berry: var(--berry);
+  --color-foam: var(--foam);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  scrollbar-color: #ff4d1c transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff4d1c;
+  border-radius: 99px;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: #ff4d1c;
+  color: white;
+}
+
+.hero-shade {
+  background:
+    linear-gradient(100deg, rgba(8, 18, 12, 0.88) 0%, rgba(8, 18, 12, 0.62) 42%, rgba(8, 18, 12, 0.18) 100%);
+}
+
+.grain {
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.18) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.float-a {
+  animation: floaty 5.5s ease-in-out infinite;
+}
+
+.float-b {
+  animation: floaty 6.4s ease-in-out infinite 0.6s;
+}
+
+.float-c {
+  animation: floaty 4.8s ease-in-out infinite 0.2s;
+}
+
+.spin-slow {
+  animation: spin 22s linear infinite;
+}
+
+.blob {
+  animation: blob 10s ease-in-out infinite;
+}
+
+.juice-card {
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+
+.juice-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 24px 50px rgba(255, 77, 28, 0.16);
+  border-color: var(--citrus);
+}
+
+.juice-card .shot {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.juice-card:hover .shot {
+  transform: scale(1.08);
+}
+
+.offer-card {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.offer-card:hover {
+  transform: translateY(-8px) scale(1.015);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  border-radius: 99px;
+  background: var(--citrus);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    border-radius: 60% 40% 55% 45% / 50% 45% 55% 50%;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    border-radius: 45% 55% 40% 60% / 55% 40% 60% 45%;
+    transform: translate(12px, -18px) scale(1.06);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.menu-panel {
+  animation: rise 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
